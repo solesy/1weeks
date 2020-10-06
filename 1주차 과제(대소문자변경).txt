@@ -1,0 +1,18 @@
+echo working directory:
+read dir
+#아무것도 입력하지않았을 경우
+if [ -z $dir ]
+then
+	dir=$(pwd)
+fi
+cd $dir
+if [ $? -ne 0 ]
+then
+	echo "해당디렉토리로 이동불가"
+#해당디렉토리내의 모든파일명을 바꾼다.
+else
+	for i in *
+	do
+		mv $i `echo $i|tr 'aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ' 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz'`
+	done
+fi
